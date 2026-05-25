@@ -141,7 +141,7 @@
 
     <button id="start-button">Click to Celebrate</button>
 
-    <audio id="bg-music" src="https://audio.com/tr-basti/audio/james-arthur-say-you-won-t-let-go" loop preload="auto"></audio>
+    <audio id="bg-music" src="music.mp3" loop preload="auto"></audio>
 
     <div id="surprise-content">
         <h1>Surprise</h1>
@@ -167,9 +167,9 @@
             btn.style.display = 'none';
             content.style.display = 'flex';
             
-            // Start playing background track safely
+            // Start playing the music file from your repo
             music.play().catch(error => {
-                console.log("Audio playback required direct click action:", error);
+                console.log("Playback failed:", error);
             });
 
             // Start raining hearts
