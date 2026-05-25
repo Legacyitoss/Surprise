@@ -45,7 +45,7 @@
             flex-direction: column;
             align-items: center;
             width: 85%;
-            height: 85vh; /* Changed from max-height to fixed height for scrolling */
+            height: 85vh; 
             z-index: 10;
             text-align: center;
             animation: celebrate 2.5s ease-out forwards;
@@ -57,20 +57,20 @@
         }
 
         h1 {
-            font-size: 4em; /* Slightly adjusted for better mobile fitting */
+            font-size: 4em; 
             background: linear-gradient(to bottom, #fff, #8B0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-top: 0;
             margin-bottom: 20px;
             font-family: 'Times New Roman', serif;
-            flex-shrink: 0; /* Prevents title from squishing */
+            flex-shrink: 0; 
         }
 
         .message-body {
             font-size: 1.6em;
             line-height: 1.8;
-            overflow-y: auto; /* This turns on scrolling JUST for your message */
+            overflow-y: auto; /* Turns on scrolling just for the letter */
             padding: 40px;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 40px;
@@ -82,7 +82,6 @@
 
         .message-body::-webkit-scrollbar { display: none; }
 
-        /* Styling for your surprise image */
         .surprise-image {
             max-width: 90%;
             height: auto;
@@ -90,7 +89,7 @@
             border: 1px solid rgba(212, 175, 55, 0.3);
             box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
             margin-top: 30px;
-            display: block; /* Ensures it renders smoothly */
+            display: block; 
             margin-left: auto;
             margin-right: auto;
         }
@@ -142,6 +141,8 @@
 
     <button id="start-button">Click to Celebrate</button>
 
+    <audio id="bg-music" src="https://audio.com/tr-basti/audio/james-arthur-say-you-won-t-let-go" loop preload="auto"></audio>
+
     <div id="surprise-content">
         <h1>Surprise</h1>
         <div class="message-body">
@@ -159,11 +160,19 @@
     <script>
         const btn = document.getElementById('start-button');
         const content = document.getElementById('surprise-content');
+        const music = document.getElementById('bg-music');
 
         btn.addEventListener('click', () => {
-            btn.style.display = 'none';
+            // Hide button and show sweet content
             btn.style.display = 'none';
             content.style.display = 'flex';
+            
+            // Start playing background track safely
+            music.play().catch(error => {
+                console.log("Audio playback required direct click action:", error);
+            });
+
+            // Start raining hearts
             setInterval(createFallingItem, 150); 
         });
 
