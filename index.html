@@ -15,7 +15,7 @@
             align-items: center;
             font-family: 'Georgia', serif;
             background-color: #050505;
-            overflow: hidden; 
+            overflow: hidden; /* Keeps the main background locked */
             color: #F4C2C2;
         }
 
@@ -67,6 +67,7 @@
             flex-shrink: 0; 
         }
 
+        /* Custom Audio Player Player Bar */
         .audio-container {
             margin-bottom: 20px;
             background: rgba(255, 255, 255, 0.05);
@@ -84,7 +85,6 @@
             outline: none;
         }
 
-       
         audio::-webkit-media-controls-panel {
             background-color: #1a1a1a;
         }
@@ -96,14 +96,14 @@
         .message-body {
             font-size: 1.6em;
             line-height: 1.8;
-            overflow-y: auto; 
+            overflow-y: auto; /* Turns on scrolling just for the letter */
             padding: 40px;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 40px;
             border: 1px solid rgba(212, 175, 55, 0.2);
             scrollbar-width: none; 
             max-width: 1100px;
-            -webkit-overflow-scrolling: touch; 
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
         }
 
         .message-body::-webkit-scrollbar { display: none; }
@@ -177,7 +177,7 @@
 
         <div class="audio-container">
             <span style="font-size: 14px; letter-spacing: 1px; font-weight: bold;">🎵 NOW PLAYING:</span>
-           <audio id="bg-music" src="https://pub-2402ff608c024d85913f41ee55ffb2ad.r2.dev/James%20Arthur%20-%20Say%20You%20Won't%20Let%20Go.mp3" controls loop preload="auto"></audio>
+            <audio id="bg-music" src="https://archive.org/download/fave2/James%20Arthur%20-%20Say%20You%20Wont%20Let%20Go.mp3" controls loop preload="auto"></audio>
         </div>
 
         <div class="message-body">
@@ -198,23 +198,18 @@
         const music = document.getElementById('bg-music');
 
         btn.addEventListener('click', () => {
-            
             btn.style.display = 'none';
             content.style.display = 'flex';
             
-           
             music.volume = 0.6;
-
-            
             const playPromise = music.play();
             
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
-                    console.log("Autoplay caught by browser restrictions. User can tap the visual player bar manually.");
+                    console.log("Playback caught by restriction:", error);
                 });
             }
 
-      
             setInterval(createFallingItem, 150); 
         });
 
