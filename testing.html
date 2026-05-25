@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Georgia', serif;
+            background-color: #050505;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        #start-button {
+            padding: 22px 65px;
+            font-size: 26px;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(135deg, #8B0001, #E97452);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 100px; 
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.4);
+            transition: all 0.5s ease;
+            z-index: 100;
+        }
+
+        #start-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px rgba(139, 0, 0, 1);
+        }
+
+        #surprise-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 85%;
+            max-height: 90vh;
+            z-index: 10;
+            text-align: center;
+            animation: celebrate 2.5s ease-out forwards;
+        }
+
+        @keyframes celebrate {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 5.5em;
+            background: linear-gradient(to bottom, #fff, #8B0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .message-body {
+            font-size: 1.6em;
+            line-height: 1.8;
+            overflow-y: auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            scrollbar-width: none; 
+            max-width: 1100px;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+
+        .message-body::-webkit-scrollbar { display: none; }
+
+        /* Styling for your surprise image */
+        .surprise-image {
+            max-width: 90%;
+            height: auto;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.3);
+            margin-top: 30px;
+        }
+
+        .falling-item {
+            position: absolute;
+            top: -50px;
+            z-index: 1;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(720deg); }
+        }
+
+        @media (max-width: 768px) {
+            #start-button {
+                padding: 16px 40px;
+                font-size: 20px;
+                letter-spacing: 2px;
+            }
+
+            #surprise-content {
+                width: 90%;
+                max-height: 85vh;
+            }
+
+            h1 {
+                font-size: 2.2em; 
+                margin-bottom: 15px;
+            }
+
+            .message-body {
+                font-size: 1.1em; 
+                padding: 20px;  
+                border-radius: 20px;
+                line-height: 1.6;
+            }
+            
+            .surprise-image {
+                max-width: 100%;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="start-button">Click to Celebrate</button>
+
+    <div id="surprise-content">
+        <h1>Surprise</h1>
+        <div class="message-body">
+	
+            Ari well first ill just start off by saying youre so kind i just love it you literally do everything in the kindest way possible and i mean it youre so kind to me i cant believe that you could be real how can people be this kind in the world youre literally the most joyful and happy person and its so crazy how brave you are i cant express it enough youre an amazing person and even that is not enough to say youre so caring you literally care for me like im your child   or something that would be weird but yeah i dont know you missing me is just i dont even know i was so shocked but i appreciate you so much youre an amazing and perfect person genuinely you may not think youre smart but youre so smart so intelligent and literally everything im surprised by how smart you are not in a mean way but just in the kindest way possible also you just brings joy to everyones  heart and youre just so nice to talk to yes you ari youre so fun to talk to and i feel like i can talk about anything with you without it being boring in the slightest i could probably yap to you the whole day and thats what i love youre such an amazing  ari probably the nicest one to ever exist  and thats not even a joke i cant express it enough
+            <br>
+            <br>
+				             this isnt even close to the amount of yapping you deserve we have shared so many memories even for this short time which should be longer but thats not the point and i hope it becomes an even longer time but thats about it from me yapping this isnt even enough to acknowledge how amazing and perfect you are not even close i hope this is a somewhat alright present for you because i didnt know what else to get you anyways i hope you enjoy ari  and i couldn't wish for it any other way you are the happiness and brightness in everyones  day you truly make everyone happy and it honestly  every day with you makes everyone feel happy that time passes by so fast you are always so near and dear to everyone close to you and i hope it stays like that for the eternity of everyones life because you truly are my brightness  i mean it truly i could stare at your eyes for decades upon decades and never get bored they are truly so majestic I hope your future children  have those gorgeous eyes because they are truly a masterpiece not to mention i love your hair in any state its so gorgeous i love it so much you are the most kind person  in the whole world and your the nicest person ever when you talk about other people sometime you joke but it’s still in the kindest manner it shows how truly caring you are
+			<br>
+            <br>
+            <img src="surprise.png" alt="Surprise Photo" class="surprise-image">
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('start-button');
+        const content = document.getElementById('surprise-content');
+
+        btn.addEventListener('click', () => {
+            btn.style.display = 'none';
+            content.style.display = 'flex';
+            setInterval(createFallingItem, 150); 
+        });
+
+        function createFallingItem() {
+            const items = ['💗', '💓', '💖', '💝', '❤️‍🔥', '💘'];
+            const item = document.createElement('div');
+            item.classList.add('falling-item');
+            item.innerText = items[Math.floor(Math.random() * items.length)];
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.fontSize = (Math.random() * 20 + 15) + 'px'; 
+            item.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            item.style.opacity = Math.random();
+            document.body.appendChild(item);
+            setTimeout(() => { item.remove(); }, 5000);
+        }
+    </script>
+</body>
+</html>
