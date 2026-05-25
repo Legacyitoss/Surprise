@@ -62,9 +62,35 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-family: 'Times New Roman', serif;
             flex-shrink: 0; 
+        }
+
+        .audio-container {
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(244, 194, 194, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .audio-container audio {
+            height: 30px;
+            outline: none;
+        }
+
+       
+        audio::-webkit-media-controls-panel {
+            background-color: #1a1a1a;
+        }
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display {
+            color: #F4C2C2;
         }
 
         .message-body {
@@ -123,6 +149,11 @@
                 margin-bottom: 15px;
             }
 
+            .audio-container {
+                padding: 5px 10px;
+                margin-bottom: 15px;
+            }
+
             .message-body {
                 font-size: 1.1em; 
                 padding: 20px;  
@@ -141,10 +172,14 @@
 
     <button id="start-button">Click to Celebrate</button>
 
-    <audio id="bg-music" src="music.mp3" loop preload="auto"></audio>
-
     <div id="surprise-content">
         <h1>Surprise</h1>
+
+        <div class="audio-container">
+            <span style="font-size: 14px; letter-spacing: 1px; font-weight: bold;">🎵 NOW PLAYING:</span>
+            <audio id="bg-music" src="music.mp3" controls loop preload="auto"></audio>
+        </div>
+
         <div class="message-body">
     
             Ari well first ill just start off by saying youre so kind i just love it you literally do everything in the kindest way possible and i mean it youre so kind to me i cant believe that you could be real how can people be this kind in the world youre literally the most joyful and happy person and its so crazy how brave you are i cant express it enough youre an amazing person and even that is not enough to say youre so caring you literally care for me like im your child   or something that would be weird but yeah i dont know you missing me is just i dont even know i was so shocked but i appreciate you so much youre an amazing and perfect person genuinely you may not think youre smart but youre so smart so intelligent and literally everything im surprised by how smart you are not in a mean way but just in the kindest way possible also you just brings joy to everyones  heart and youre just so nice to talk to yes you ari youre so fun to talk to and i feel like i can talk about anything with you without it being boring in the slightest i could probably yap to you the whole day and thats what i love youre such an amazing  ari probably the nicest one to ever exist  and thats not even a joke i cant express it enough
@@ -163,16 +198,23 @@
         const music = document.getElementById('bg-music');
 
         btn.addEventListener('click', () => {
-        
+            
             btn.style.display = 'none';
             content.style.display = 'flex';
             
-            
-            music.play().catch(error => {
-                console.log("Playback failed:", error);
-            });
-
            
+            music.volume = 0.6;
+
+            
+            const playPromise = music.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Autoplay caught by browser restrictions. User can tap the visual player bar manually.");
+                });
+            }
+
+      
             setInterval(createFallingItem, 150); 
         });
 
